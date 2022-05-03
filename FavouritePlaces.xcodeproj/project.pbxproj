@@ -16,6 +16,8 @@
 		960EF8992820E8B200034368 /* FavouritePlacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960EF8982820E8B200034368 /* FavouritePlacesTests.swift */; };
 		960EF8A32820E8B200034368 /* FavouritePlacesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960EF8A22820E8B200034368 /* FavouritePlacesUITests.swift */; };
 		960EF8A52820E8B200034368 /* FavouritePlacesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960EF8A42820E8B200034368 /* FavouritePlacesUITestsLaunchTests.swift */; };
+		960EF8B32820F49A00034368 /* Place+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960EF8B12820F49A00034368 /* Place+CoreDataClass.swift */; };
+		960EF8B42820F49A00034368 /* Place+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960EF8B22820F49A00034368 /* Place+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		960EF89E2820E8B200034368 /* FavouritePlacesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FavouritePlacesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		960EF8A22820E8B200034368 /* FavouritePlacesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesUITests.swift; sourceTree = "<group>"; };
 		960EF8A42820E8B200034368 /* FavouritePlacesUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePlacesUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		960EF8B12820F49A00034368 /* Place+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Place+CoreDataClass.swift"; path = "FavouritePlaces/Generated/Place+CoreDataClass.swift"; sourceTree = "<group>"; };
+		960EF8B22820F49A00034368 /* Place+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Place+CoreDataProperties.swift"; path = "FavouritePlaces/Generated/Place+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 		960EF8762820E8AF00034368 = {
 			isa = PBXGroup;
 			children = (
+				960EF8B12820F49A00034368 /* Place+CoreDataClass.swift */,
+				960EF8B22820F49A00034368 /* Place+CoreDataProperties.swift */,
 				960EF8812820E8AF00034368 /* FavouritePlaces */,
 				960EF8972820E8B200034368 /* FavouritePlacesTests */,
 				960EF8A12820E8B200034368 /* FavouritePlacesUITests */,
@@ -263,6 +269,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				960EF8B32820F49A00034368 /* Place+CoreDataClass.swift in Sources */,
+				960EF8B42820F49A00034368 /* Place+CoreDataProperties.swift in Sources */,
 				960EF88C2820E8B200034368 /* Persistence.swift in Sources */,
 				960EF88F2820E8B200034368 /* FavouritePlaces.xcdatamodeld in Sources */,
 				960EF8852820E8AF00034368 /* ContentView.swift in Sources */,
