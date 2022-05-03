@@ -20,10 +20,8 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(places) { place in
-                    NavigationLink {
-                        Text("Item at \(place.name!)")
-                    } label: {
-                        Text(place.name!)
+                    NavigationLink(destination: PlaceView(places: place)) {
+                        PlaceRowView(placesrow: place)
                     }
                 }
                 .onDelete(perform: deleteItems)
@@ -45,7 +43,7 @@ struct ContentView: View {
     private func addItem() {
         withAnimation {
             let newPlace = Place(context: viewContext)
-            newPlace.name = "New Place"
+            newPlace.name = "New Place #\(places.count + 1)"
             newPlace.image = "https://kravmaganewcastle.com.au/wp-content/uploads/2017/04/default-image.jpg"
             newPlace.latitude = 0.0
             newPlace.longitude = 0.0
