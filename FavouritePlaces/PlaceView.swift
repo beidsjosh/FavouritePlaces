@@ -47,6 +47,7 @@ struct PlaceView: View {
                 }
         }
         .environment(\.editMode, self.$isEditMode)
+        if (self.isEditMode == .active) {
         Button {
             do {
                 try viewContext.save()
@@ -64,5 +65,6 @@ struct PlaceView: View {
                         .cornerRadius(15)
                         .padding()
                 }
+        }
     }
 }
