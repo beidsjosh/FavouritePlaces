@@ -17,8 +17,8 @@ struct PersistenceController {
             let newPlace = Place(context: viewContext)
             newPlace.name = "New Place"
             newPlace.image = "https://kravmaganewcastle.com.au/wp-content/uploads/2017/04/default-image.jpg"
-            newPlace.latitude = 0.0
-            newPlace.longitude = 0.0
+            newPlace.latitude = "0.0"
+            newPlace.longitude = "0.0"
             newPlace.notes = "No Notes"
         }
         do {

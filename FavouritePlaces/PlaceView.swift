@@ -10,6 +10,7 @@ import SwiftUI
 struct PlaceView: View {
     @ObservedObject var places: Place
     @Environment(\.managedObjectContext) var viewContext
+    @State var isEditMode: EditMode = .inactive
     
     var image: UIImage {
         guard
@@ -23,14 +24,28 @@ struct PlaceView: View {
     
     var body: some View {
             List {
+                if (self.isEditMode == .inactive) {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
                 Text(places.name!)
-                Text("\(places.latitude, specifier: "%.1f")")
-                Text("\(places.longitude, specifier: "%.2f")")
+                Text(places.latitude!)
+                Text(places.longitude!)
                 Text(places.notes!)
+                } else {
+                        TextField("Enter Image URL", text: .bindOptional($places.image, ""))
+                        TextField("Enter place name", text: .bindOptional($places.name, ""))
+                        TextField("Enter latitude", text: .bindOptional($places.latitude, ""))
+                        TextField("Enter longitude", text: .bindOptional($places.longitude, ""))
+                        TextField("Enter Notes", text: .bindOptional($places.notes, ""))
+                    }
             }
-        .navigationTitle(places.name!)
+            .navigationTitle(places.name ?? "")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                EditButton()
+            }
+        }
+        .environment(\.editMode, self.$isEditMode)
     }
 }
