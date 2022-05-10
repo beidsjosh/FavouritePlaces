@@ -47,5 +47,22 @@ struct PlaceView: View {
                 }
         }
         .environment(\.editMode, self.$isEditMode)
+        Button {
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+                } label: {
+                    Text("Save Changes")
+                        .foregroundColor(.white)
+                        .frame(width: 200, height: 40)
+                        .background(Color.green)
+                        .cornerRadius(15)
+                        .padding()
+                }
     }
 }
