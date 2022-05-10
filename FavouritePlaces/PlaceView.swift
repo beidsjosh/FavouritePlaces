@@ -33,18 +33,18 @@ struct PlaceView: View {
                 Text(places.longitude!)
                 Text(places.notes!)
                 } else {
-                        TextField("Enter Image URL", text: .bindOptional($places.image, ""))
-                        TextField("Enter place name", text: .bindOptional($places.name, ""))
-                        TextField("Enter latitude", text: .bindOptional($places.latitude, ""))
-                        TextField("Enter longitude", text: .bindOptional($places.longitude, ""))
-                        TextField("Enter Notes", text: .bindOptional($places.notes, ""))
-                    }
+                    TextField("Enter Image URL", text: .bindOptional($places.image, ""))
+                    TextField("Enter place name", text: .bindOptional($places.name, ""))
+                    TextField("Enter latitude", text: .bindOptional($places.latitude, ""))
+                    TextField("Enter longitude", text: .bindOptional($places.longitude, ""))
+                    TextField("Enter Notes", text: .bindOptional($places.notes, ""))
+                }
             }
             .navigationTitle(places.name ?? "")
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
-            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
         }
         .environment(\.editMode, self.$isEditMode)
     }

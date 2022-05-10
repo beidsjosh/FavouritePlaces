@@ -13,7 +13,7 @@ struct PlaceRowView: View {
     
     var image: UIImage {
         guard
-            let url = URL(string: placesrow.image!),
+            let url = URL(string: placesrow.image ?? "https://kravmaganewcastle.com.au/wp-content/uploads/2017/04/default-image.jpg"),
             let data = try? Data(contentsOf: url)
         else {
             fatalError("Something went wrong!")
