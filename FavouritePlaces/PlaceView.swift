@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct PlaceView: View {
     @ObservedObject var places: Place
     @Environment(\.managedObjectContext) var viewContext
     @State var isEditMode: EditMode = .inactive
+    @State private var region2 = MKCoordinateRegion(.world)
     
     var image: UIImage {
         guard
@@ -29,8 +31,11 @@ struct PlaceView: View {
                     .resizable()
                     .scaledToFit()
                 Text(places.name!)
-                Text(places.latitude!)
-                Text(places.longitude!)
+                    NavigationLink {
+                        LocationView(region: $region2, placesCoords: places)
+                    } label: {
+                        Text("Location")
+                    }
                 Text(places.notes!)
                 } else {
                     TextField("Enter Image URL", text: .bindOptional($places.image, ""))
