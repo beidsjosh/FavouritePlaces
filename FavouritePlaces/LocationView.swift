@@ -18,15 +18,11 @@ struct LocationView: View {
             Map(coordinateRegion: $region)
             HStack {
                 Text("Lat:")
-                TextField("Enter Latitude", text: $region.latitudeString, onCommit: {
-                    placesCoords.latitude = region.latitudeString
-                })
+                TextField("Enter Latitude", text: $region.latitudeString)
             }
             HStack {
                 Text("Lon:")
-                TextField("Enter Longitude", text: $region.longitudeString, onCommit: {
-                    placesCoords.longitude = region.longitudeString
-                })
+                TextField("Enter Longitude", text: $region.longitudeString)
             }
         }
     }

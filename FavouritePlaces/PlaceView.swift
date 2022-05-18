@@ -40,8 +40,6 @@ struct PlaceView: View {
                 } else {
                     TextField("Enter Image URL", text: .bindOptional($places.image, ""))
                     TextField("Enter place name", text: .bindOptional($places.name, ""))
-                    TextField("Enter latitude", text: .bindOptional($places.latitude, ""))
-                    TextField("Enter longitude", text: .bindOptional($places.longitude, ""))
                     TextField("Enter Notes", text: .bindOptional($places.notes, ""))
                 }
             }
