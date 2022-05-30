@@ -12,7 +12,7 @@ struct PlaceView: View {
     @ObservedObject var places: Place
     @Environment(\.managedObjectContext) var viewContext
     @State var isEditMode: EditMode = .inactive
-    @State private var region2 = MKCoordinateRegion(.world)
+    @StateObject var coordinates = LocationViewModel(location: CLLocation(latitude: -27.47, longitude: 153.02))
     
     var image: UIImage {
         guard
@@ -32,7 +32,7 @@ struct PlaceView: View {
                     .scaledToFit()
                 Text(places.name!)
                     NavigationLink {
-                        LocationView(region: $region2, placesCoords: places)
+                        LocationView(placesCoords: places, locationModel: coordinates)
                     } label: {
                         Text("Location")
                     }
