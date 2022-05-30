@@ -8,9 +8,11 @@
 import Combine
 import CoreLocation
 import SwiftUI
+import MapKit
 
 class LocationViewModel: ObservableObject {
     @Published var location: CLLocation
+    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -27, longitude: -153), latitudinalMeters: 5000, longitudinalMeters: 5000)
     @Published var sunriseSunset = SunriseSunset(sunrise: "unknown", sunset: "unknown")
     @Published var name = ""
     var sunrise: String {

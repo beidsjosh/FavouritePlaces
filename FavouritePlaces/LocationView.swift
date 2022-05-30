@@ -27,6 +27,7 @@ struct LocationView: View {
                     locationModel.lookupCoordinates(for: locationModel.name)
                 }
             }
+            Map(coordinateRegion: $locationModel.region)
             HStack {
                 Text("Latitude:").font(.headline)
                 TextField("Enter coordinate", text: $locationModel.latitudeString)
