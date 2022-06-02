@@ -15,35 +15,35 @@ struct LocationView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Button {
-                    print("Looking up \(locationModel.location.coordinate)")
-                    locationModel.lookupName(for: locationModel.location)
-                } label: {
-                    Label("Name:", systemImage: "text.magnifyingglass")
+                HStack {
+                    Button {
+                        print("Looking up \(locationModel.location.coordinate)")
+                        locationModel.lookupName(for: locationModel.location)
+                    } label: {
+                        Label("Name:", systemImage: "text.magnifyingglass")
+                    }
+                    TextField("Enter name", text: $locationModel.name) {
+                        print("Looking up \(locationModel.name)")
+                        locationModel.lookupCoordinates(for: locationModel.name)
+                    }
                 }
-                TextField("Enter name", text: $locationModel.name) {
-                    print("Looking up \(locationModel.name)")
-                    locationModel.lookupCoordinates(for: locationModel.name)
+                Map(coordinateRegion: $locationModel.region)
+                HStack {
+                    Text("Latitude:").font(.headline)
+                    TextField("Enter coordinate", text: $locationModel.latitudeString)
                 }
-            }
-            Map(coordinateRegion: $locationModel.region)
-            HStack {
-                Text("Latitude:").font(.headline)
-                TextField("Enter coordinate", text: $locationModel.latitudeString)
-            }
-            HStack {
-                Text("Longitude:").font(.headline)
-                TextField("Enter coordinate", text: $locationModel.longitudeString)
-            }
-            Button("Look up sunrise and sunset") {
-                locationModel.lookupSunriseAndSunset()
-            }
-            HStack {
-                Label(locationModel.sunrise, systemImage: "sunrise")
-                Spacer()
-                Label(locationModel.sunset,  systemImage: "sunset")
+                HStack {
+                    Text("Longitude:").font(.headline)
+                    TextField("Enter coordinate", text: $locationModel.longitudeString)
+                }
+                Button("Look up sunrise and sunset") {
+                    locationModel.lookupSunriseAndSunset()
+                }
+                HStack {
+                    Label(locationModel.sunrise, systemImage: "sunrise")
+                    Spacer()
+                    Label(locationModel.sunset,  systemImage: "sunset")
+                }.padding()
             }.padding()
-        }.padding()
-    }
+        }
 }

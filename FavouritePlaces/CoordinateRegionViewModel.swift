@@ -12,7 +12,7 @@ import MapKit
 
 class LocationViewModel: ObservableObject {
     @Published var location: CLLocation
-    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -27, longitude: -153), latitudinalMeters: 20000, longitudinalMeters: 20000)
+    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -27.47, longitude: 153.02), latitudinalMeters: 20000, longitudinalMeters: 20000)
     @Published var sunriseSunset = SunriseSunset(sunrise: "unknown", sunset: "unknown")
     @Published var name = ""
     var sunrise: String {
@@ -29,23 +29,23 @@ class LocationViewModel: ObservableObject {
     }
 
     var latitudeString: String {
-        get { "\(location.coordinate.latitude)" }
+        get { "\(region.center.latitude)" }
         set {
             guard let newLatitude = Double(newValue) else { return }
-            //let newLocation = CLLocation(latitude: newLatitude, longitude: location.coordinate.longitude)
-            let newLocation = CLLocationDegrees(newLatitude)
-            //location = newLocation
-            region.center.latitude = newLocation
+            let newLocation = CLLocation(latitude: newLatitude, longitude: region.center.longitude)
+            let newLocationMap = CLLocationDegrees(newLatitude)
+            location = newLocation
+            region.center.latitude = newLocationMap
         }
     }
     var longitudeString: String {
-        get { "\(location.coordinate.longitude)" }
+        get { "\(region.center.longitude)" }
         set {
             guard let newLongitude = Double(newValue) else { return }
-            //let newLocation = CLLocation(latitude: location.coordinate.latitude, longitude: newLongitude)
-            let newLocation = CLLocationDegrees(newLongitude)
-            //location = newLocation
-            region.center.longitude = newLocation
+            let newLocation = CLLocation(latitude: region.center.latitude, longitude: newLongitude)
+            let newLocationMap = CLLocationDegrees(newLongitude)
+            location = newLocation
+            region.center.longitude = newLocationMap
         }
     }
 
@@ -66,6 +66,7 @@ class LocationViewModel: ObservableObject {
                 return
             }
             self.location = location
+            self.region.center = location.coordinate
         }
     }
 
