@@ -9,8 +9,11 @@ import SwiftUI
 import MapKit
 
 struct LocationView: View {
+    ///loads the PlaceItem
     @ObservedObject var placesCoords: Place
+    ///loads the LocationViewModel content
     @ObservedObject var locationModel: LocationViewModel
+    ///loads the persistence context
     @Environment(\.managedObjectContext) var viewContext
     
     var body: some View {

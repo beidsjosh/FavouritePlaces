@@ -11,9 +11,13 @@ import SwiftUI
 import MapKit
 
 class LocationViewModel: ObservableObject {
+    ///Stores the coordinate strings
     @Published var location: CLLocation
+    ///displays the map coordinates
     @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -27.47, longitude: 153.02), latitudinalMeters: 20000, longitudinalMeters: 20000)
+    ///used to display the sunrise/sunset times
     @Published var sunriseSunset = SunriseSunset(sunrise: "unknown", sunset: "unknown")
+    ///placeholder variable for the geocoding string
     @Published var name = ""
     var sunrise: String {
         get { sunriseSunset.sunrise }
@@ -28,6 +32,7 @@ class LocationViewModel: ObservableObject {
         self.location = location
     }
 
+    ///used to display the Latitude value and update the value when the user drags across the map. Also used when the user performs geocoding
     var latitudeString: String {
         get { "\(region.center.latitude)" }
         set {
@@ -38,6 +43,7 @@ class LocationViewModel: ObservableObject {
             region.center.latitude = newLocationMap
         }
     }
+    ///used to display the Latitude value and update the value when the user drags across the map. Also used when the user performs geocoding
     var longitudeString: String {
         get { "\(region.center.longitude)" }
         set {
@@ -49,6 +55,7 @@ class LocationViewModel: ObservableObject {
         }
     }
 
+    ///function to lookup coordinates based on the place name the user inputs
     func lookupCoordinates(for place: String) {
         let coder = CLGeocoder()
         coder.geocodeAddressString(place) { optionalPlacemarks, optionalError in
@@ -70,6 +77,7 @@ class LocationViewModel: ObservableObject {
         }
     }
 
+    ///function to lookup the name of a place based on the coordinates inputted
     func lookupName(for location: CLLocation) {
         let coder = CLGeocoder()
         coder.reverseGeocodeLocation(location) { optionalPlacemarks, optionalError in
@@ -100,6 +108,7 @@ class LocationViewModel: ObservableObject {
         }
     }
 
+    ///function to lookup the sunrise and sunset based on the coordinates currently inputted
     func lookupSunriseAndSunset() {
         let urlString = "https://api.sunrise-sunset.org/json?lat=\(latitudeString)&lng=\(longitudeString)"
         guard let url = URL(string: urlString) else {

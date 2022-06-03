@@ -9,8 +9,10 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    ///loads the persistence context for the Place Items
     @Environment(\.managedObjectContext) private var viewContext
 
+    ///fetches the Places that are stored in CoreData
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Place.name, ascending: true)],
         animation: .default)
@@ -39,7 +41,8 @@ struct ContentView: View {
             Text("Select an item")
         }
     }
-
+    
+    /// When the user clicks on the add button, this function is executed. Adds a Place item with default values that the user can edit later
     private func addItem() {
         withAnimation {
             let newPlace = Place(context: viewContext)
@@ -60,6 +63,7 @@ struct ContentView: View {
         }
     }
 
+    ///deletes the item that the user has selected
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { places[$0] }.forEach(viewContext.delete)

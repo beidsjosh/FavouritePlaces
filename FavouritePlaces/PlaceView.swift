@@ -9,11 +9,16 @@ import SwiftUI
 import MapKit
 
 struct PlaceView: View {
+    ///loads the object Place from ContentView
     @ObservedObject var places: Place
+    ///loads the persistence context
     @Environment(\.managedObjectContext) var viewContext
+    ///used to tell if edit mode is on or off
     @State var isEditMode: EditMode = .inactive
+    ///default coordinates to pass into LocationView
     @StateObject var coordinates = LocationViewModel(location: CLLocation(latitude: -27.47, longitude: 153.02))
     
+    ///loads the image
     var image: UIImage {
         guard
             let url = URL(string: places.image!),
@@ -25,6 +30,7 @@ struct PlaceView: View {
     }
     
     var body: some View {
+        //if edit mode is active, displays textfields instead of image and Location button
             List {
                 if (self.isEditMode == .inactive) {
                 Image(uiImage: image)
@@ -50,6 +56,7 @@ struct PlaceView: View {
                 }
         }
         .environment(\.editMode, self.$isEditMode)
+        //displays save button when edit mode is active
         if (self.isEditMode == .active) {
         Button {
             do {
